@@ -57,7 +57,7 @@ void min_heapify(vector<HeapElement> &heap, int index)
 {
     int l = left(index);
     int r = right(index);
-    double smallest = index;
+    int smallest = index;
     if (l < heap.size() && heap[l].cost < heap[smallest].cost)
     {
         smallest = l;
@@ -107,9 +107,16 @@ void decrease_key(vector<HeapElement> &heap, int index, double key)
 void prim(vector<Vertex> &vertices)
 {
     vector<HeapElement> heap;
+
+    double real_max = numeric_limits<double>::max();
+    if (numeric_limits<double>::has_infinity)
+    {
+        real_max = numeric_limits<double>::infinity();
+    }
+
     for (int i = 0; i < vertices.size(); ++i)
     {
-        heap.push_back(HeapElement(i, numeric_limits<double>::max()));
+        heap.push_back(HeapElement(i, real_max));
     }
 
     // selecionar primeiro vértice:
