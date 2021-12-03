@@ -14,7 +14,6 @@ Thiago de Mendonça Mildemberger - 1716980
 
 using namespace std;
 
-
 /**
  * O vértice é a estrutura principal do programa, que carrega dentro de si as
  * suas coordenadas, além dos índices dos vértices filhos, índice do vértice
@@ -53,7 +52,6 @@ struct HeapElement
         : vertex_index(vertex_index), cost(cost) {}
 };
 
-
 /**
  * Função auxiliar que lê os vértices do arquivo especificado como argumento
  * para o programa.
@@ -81,8 +79,6 @@ vector<Vertex> read_vertices(string input_file)
     return vertices;
 }
 
-
-
 /**Nesta seção do programa estão as funções auxiliares que permitem o
  * funcionamento do heap mínimo implementado pela equipe, que é utilizado no
  * algoritmo de Prim.
@@ -107,7 +103,6 @@ int parent(int index)
     return (index - 1) / 2;
 }
 /*****************************************************************************/
-
 
 /**
  * A função min_heapify recebe o heap e o índice de um elemento. Ela supõe que
@@ -155,7 +150,7 @@ void build_min_heap(vector<HeapElement> &heap)
 
 /**
  * A função extract_min retorna o elemento de menor chave no heap, que é o
- * armazemado na raiz. Esse elemento é retirado da estrutura, e o heap é
+ * armazenado na raiz. Esse elemento é retirado da estrutura, e o heap é
  * reorganizado, colocando o último elemento do arranjo no lugar da raiz e
  * chamando a função min_heapify na raiz.
  */
@@ -190,7 +185,6 @@ void decrease_key(vector<HeapElement> &heap, int index, double key)
     }
 }
 /*****************************************************************************/
-
 
 /**
  * Uma das funções principais do programa, recebe como entrada o vetor de
@@ -239,7 +233,7 @@ void prim(vector<Vertex> &vertices)
         // mais leve para ser adicionada à AGM em construção. O vértice
         // escolhido tem a informação de qual vértice vem essa aresta mais
         // leve, pois quando esse menor custo foi calculado, o campo
-        // 'parent_index' desse vértice recebeu o índice do vértice no qual a 
+        // 'parent_index' desse vértice recebeu o índice do vértice no qual a
         // aresta se origina.
         HeapElement min = extract_min(heap);
         int u_index = min.vertex_index;
@@ -290,7 +284,7 @@ void write_edges_to_file(vector<Vertex> &vertices)
     // para o pai, todas as (n - 1) arestas da AGM são impressas.
     for (int i = 1; i < vertices.size(); ++i)
     {
-        Vertex& v = vertices[i];
+        Vertex &v = vertices[i];
         edges_file << vertices[v.parent_index].x << " "
                    << vertices[v.parent_index].y << endl;
         edges_file << v.x << " " << v.y << endl;
@@ -381,7 +375,6 @@ double calculate_cycle_cost(vector<Vertex> &cycle_vertices)
     }
     return cost;
 }
-
 
 /**
  * DESCRIÇÃO GERAL:
